@@ -144,6 +144,7 @@ function MenuList (props) {
     {({ data, index, style}: ListChildProps) => {
       return (
         <div
+          id={windowListProps?.menuItemContainerId?.(index, data)}
           style={{
             ...style,
             top: `${parseFloat(style.top.toString()) + paddingTop}px`,
