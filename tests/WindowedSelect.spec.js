@@ -1,4 +1,5 @@
 import Select, { components } from 'react-select';
+import { VariableSizeList as List } from 'react-window';
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import WindowedMenuList from '../src/MenuList';
@@ -12,6 +13,28 @@ describe('WindowedSelect', () => {
 
     expect(selectWrapper.find(Select).prop('foo')).toBeTruthy();
     expect(selectWrapper.find(Select).prop('bar')).toBeTruthy();
+  });
+
+  test("passes windowProps to react-window's List component", () => {
+    const options = [
+      { label: 'foo', value: 1 },
+      { label: 'bar', value: 2 },
+    ];
+
+    const onItemsRendered = (indices) => console.log('onItemsRendered', indices);
+
+    let selectWrapper = mount(
+      <WindowedSelect
+        menuIsOpen
+        windowListProps={{
+          onItemsRendered: onItemsRendered
+        }}
+        options={options}
+        windowThreshold={0}
+      />
+    );
+
+    expect(selectWrapper.find(List).prop('onItemsRendered')).toEqual(onItemsRendered);
   });
 
   test('handles nil options', () => {

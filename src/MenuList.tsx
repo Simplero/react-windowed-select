@@ -76,7 +76,7 @@ function MenuList (props) {
     selectProps,
   } = props;
 
-  const { classNamePrefix, isMulti } = selectProps || {};
+  const { classNamePrefix, isMulti, windowListProps } = selectProps || {};
   const list = React.useRef<List>(null);
 
 
@@ -139,6 +139,7 @@ function MenuList (props) {
       itemCount={itemCount}
       itemData={children}
       itemSize={index => measuredHeights.current[index] || heights[index]}
+      {...windowListProps}
     >
     {({ data, index, style}: ListChildProps) => {
       return (
