@@ -111,7 +111,7 @@ function MenuList (props) {
        * enables scrolling on key down arrow
        */
       if (currentIndex >= 0 && list.current !== null) {
-        list.current.scrollToItem(currentIndex, 'start');
+        list.current.scrollToItem(currentIndex);
       }
     },
     [currentIndex, children, list]
